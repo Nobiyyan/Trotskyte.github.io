@@ -1,66 +1,148 @@
-body, html{
-    margin: 0;
-    padding: 0;
-    font-family: 'Open Sans', sans-serif;
-}
-body{
-    background-image: url(../image/background.jpg);
-    background-size: cover;
-}
-header{
-    margin-top: 30px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-header > img{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 1px solid #000;
-    object-fit: cover;
-    box-shadow: rgb(28 32 93/ 24%) 0px 2px 8px 0px;
-}
-header > h1{
-    display: inline-block;
-    font-weight: bold;
-    font-size: 0.8em;
-    border-radius: 1em;
-    background-color: #000a;
-    color: #fff;
-    padding: 0.3em 0.6em;
-    border: 1px solid #fff
-}
-#vanta {
-    z-index: 0;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-main > ul{
-    display: block;
-    cursor: pointer;
-    box-sizing: border-box;
-    list-style: none;
-    margin: 0 auto;
-    padding: 2em;
-    max-width: 500px;
-}
-main ul li{
-    cursor: pointer;
-    text-align: center;
-    background-color: #fffa;
-    backdrop-filter: blur(10px) saturate(160%) contrast(180%);
-    -webkit-backdrop-filter: blur(10px) saturate(160%) contrast(180%);
-    border-radius: 10em;
-    padding: 1em;
-    margin: 1.5em;
-    box-shadow: rgb(28 32 93/ 24%) 0px 2px 8px 0px;
-}
-main ul li a{
-    color: black;
-    text-decoration: none;
-    gap: 0.5em;
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body,
+html {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Setup Vanta Background & Fallback Image */
+#vanta-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  /* Ini akan muncul jika script vanta.js gagal dimuat */
+  background-size: cover;
+  background-position: center;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("../image/background.jpg");
+  /* rgba(0,0,0,0.4) akan membuat gambar 40% lebih gelap */
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+/* Header & Profile */
+header {
+  margin-top: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInDown 1s ease-out;
+}
+
+header img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  object-fit: cover;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+header img:hover {
+  transform: scale(1.05);
+}
+
+header h1 {
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 0.4em 1.2em;
+  border-radius: 2em;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: 1px;
+}
+
+/* Button Links Container */
+ul {
+  list-style: none;
+  width: 100%;
+  max-width: 400px; /* Dipersempit sedikit agar tombol lebih elegan */
+  margin-top: 2rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+ul li {
+  margin-bottom: 1.2rem;
+}
+
+/* Glassmorphism Buttons */
+ul li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: #fff; /* Teks putih lebih kontras jika background gelap/vanta */
+  font-weight: 500;
+  font-size: 1.05rem;
+
+  /* Glass Effect */
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  transition: all 0.3s ease;
+}
+
+ul li a i {
+  font-size: 1.3rem;
+}
+
+/* Hover Effect pada Button */
+ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px); /* Efek tombol terangkat */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animasi Muncul Pertama Kali */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
